@@ -1,0 +1,575 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Hyperspace by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* Color Variables */
+			:root {
+				--primary-color: #000000;
+				--secondary-color: #333333;
+				--accent-color: #00FFFF;
+				--text-color: #FFFFFF;
+				--background-color: #000000;
+				--hover-color: #00FFFF;
+				--border-color: #333333;
+			}
+
+			/* Background styles */
+			body {
+				background-color: var(--background-color);
+				color: var(--text-color);
+			}
+
+			/* Section backgrounds */
+			.wrapper {
+				background-color: var(--background-color) !important;
+				color: var(--text-color);
+				padding: 3em 0;
+			}
+
+			/* Layout adjustments */
+			.features {
+				display: flex;
+				flex-direction: column !important;
+			}
+
+			.features section {
+				width: 100% !important;
+				margin-left: 0 !important;
+				margin-right: 0 !important;
+			}
+
+			.features section:first-child {
+				border-bottom: 1px solid var(--border-color);
+				padding-bottom: 2em;
+				margin-bottom: 2em;
+			}
+
+			.spotlights {
+				display: flex;
+				flex-direction: column !important;
+			}
+
+			.spotlights section {
+				width: 100% !important;
+			}
+
+			/* Text colors */
+			h1, h2, h3, h4, p, label {
+				color: var(--text-color) !important;
+			}
+
+			a {
+				color: var(--accent-color) !important;
+			}
+
+			a:hover {
+				color: var(--hover-color) !important;
+			}
+
+			/* Form styles */
+			input, textarea {
+				background-color: rgba(255, 255, 255, 0.1) !important;
+				color: var(--text-color) !important;
+				border: 1px solid var(--border-color) !important;
+			}
+
+			input:focus, textarea:focus {
+				border-color: var(--accent-color) !important;
+			}
+
+			/* Icon colors */
+			.icon.major {
+				color: var(--accent-color) !important;
+			}
+
+			/* Button styles */
+			.button {
+				background-color: transparent !important;
+				border: 2px solid var(--accent-color) !important;
+				color: var(--accent-color) !important;
+			}
+
+			.button:hover {
+				background-color: var(--accent-color) !important;
+				color: var(--background-color) !important;
+			}
+
+			/* Profile photo floating animation */
+			.profile-photo {
+				animation: float 6s ease-in-out infinite;
+			}
+
+			@keyframes float {
+				0% { transform: translateY(0px); }
+				50% { transform: translateY(-10px); }
+				100% { transform: translateY(0px); }
+			}
+
+			/* Duck Animation */
+			.duck {
+				position: fixed;
+				font-size: 40px;
+				width: 40px;
+				height: 40px;
+				z-index: 9999;
+				pointer-events: none;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				transition: opacity 0.2s ease-in-out;
+				opacity: 1;
+			}
+
+			.duck::after {
+				content: "🐥";
+			}
+
+			/* Edge positions */
+			.duck.top {
+				top: -50px;
+				animation: slideTop 2s ease-in-out;
+			}
+
+			.duck.bottom {
+				bottom: -50px;
+				animation: slideBottom 2s ease-in-out;
+			}
+
+			.duck.left {
+				left: -50px;
+				animation: slideLeft 2s ease-in-out;
+			}
+
+			.duck.right {
+				right: -50px;
+				animation: slideRight 2s ease-in-out;
+			}
+
+			@keyframes slideTop {
+				0% { transform: translateY(-50px); opacity: 0; }
+				20% { transform: translateY(50px); opacity: 1; }
+				80% { transform: translateY(50px); opacity: 1; }
+				100% { transform: translateY(-50px); opacity: 0; }
+			}
+
+			@keyframes slideBottom {
+				0% { transform: translateY(50px); opacity: 0; }
+				20% { transform: translateY(-50px); opacity: 1; }
+				80% { transform: translateY(-50px); opacity: 1; }
+				100% { transform: translateY(50px); opacity: 0; }
+			}
+
+			@keyframes slideLeft {
+				0% { transform: translateX(-100px); opacity: 0; }
+				20% { transform: translateX(50px); opacity: 1; }
+				80% { transform: translateX(50px); opacity: 1; }
+				100% { transform: translateX(-100px); opacity: 0; }
+			}
+
+			@keyframes slideRight {
+				0% { transform: translateX(50px); opacity: 0; }
+				20% { transform: translateX(-50px); opacity: 1; }
+				80% { transform: translateX(-50px); opacity: 1; }
+				100% { transform: translateX(50px); opacity: 0; }
+			}
+
+			/* Back to Top Button */
+			.back-to-top {
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				background: var(--accent-color);
+				border: 2px solid var(--accent-color);
+				color: var(--background-color);
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				opacity: 0;
+				visibility: hidden;
+				z-index: 1000;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+			}
+
+			.back-to-top:hover {
+				background: var(--background-color);
+				color: var(--accent-color);
+				transform: translateY(-3px);
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+			}
+
+			.back-to-top i {
+				color: var(--background-color);
+				font-size: 1.5em;
+			}
+
+			.back-to-top:hover i {
+				color: var(--accent-color);
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<!-- Duck -->
+		<div class="duck"></div>
+
+		<!-- Back to Top Button -->
+		<button class="back-to-top" onclick="scrollToTop()">
+			<i class="fas fa-arrow-up"></i>
+		</button>
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Welcome</a></li>
+							<li><a href="#about">About Me</a></li>
+							<li><a href="#projects">Projects</a></li>
+							<li><a href="#skills">Skills</a></li>
+							<li><a href="#experience">Experience</a></li>
+							<li><a href="#education">Education</a></li>
+							<li><a href="#certifications">Certifications</a></li>
+							<li><a href="#contact">Get in touch</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<div class="profile-photo">
+								<img src="images/WhatsApp Image 2025-04-13 at 15.32.11.jpeg" alt="Prasanthi Veerla" style="width: 250px; height: 250px; border-radius: 50%; object-fit: cover; margin-bottom: 2em;" />
+							</div>
+							<h1>Prasanthi Veerla</h1>
+							<div class="social-links" style="margin-bottom: 1.5em;">
+								<p style="margin-bottom: 0.5em;">
+									<i class="fas fa-phone"></i> +1(314)489-3336 | 
+									<i class="fas fa-envelope"></i> <a href="mailto:veerlaprasanthi7@gmail.com">veerlaprasanthi7@gmail.com</a>
+								</p>
+								<p>
+									<a href="https://www.linkedin.com/in/prasanthi-veerla-b28130212" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> | 
+									<a href="https://github.com/prasanthiveerla3" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+								</p>
+							</div>
+							<p>Computer Science Master's student with hands-on experience developing machine learning models, designing scalable software systems, and implementing cybersecurity solutions. Built real-time collaborative platforms and applied explainable AI techniques to enhance model transparency and privacy.</p>
+							<ul class="actions">
+								<li><a href="#about" class="button scrolly">View My Work</a></li>
+								<li><a href="#contact" class="button scrolly">Contact Me</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- About -->
+					<section id="about" class="wrapper style2 spotlights">
+						<div class="inner">
+							<h2>About Me</h2>
+							<p style="line-height: 1.8;">Hey, I'm Prasanthi — a curious mind who started out in Electrical and Electronics Engineering and is now diving deep into Computer Science. I enjoy learning across disciplines, from power systems to machine learning and explainable AI. While I value both fields, my current focus is on CS and building real-world solutions. I see myself as someone who understands both hardware and intelligence. And yes, I still live by Yoda's words: "Do or do not. There is no try."</p>
+						</div>
+					</section>
+
+				<!-- Projects -->
+					<section id="projects" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>Projects</h2>
+							<div class="features">
+								<section>
+									<span class="icon solid major fa-shield-alt"></span>
+									<h3>Unveiling the Unseen: Exploring Whitebox Membership Inference</h3>
+									<p>Created an approach to protect against Membership Inference Attacks (MIAs) by using SHAP to explain and analyze features which are important for protecting privacy in ML models.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-code"></span>
+									<h3>Real-time Collaborative Code Editor</h3>
+									<p>Designed and built a real-time collaborative code editing platform using WebSockets, allowing multiple developers to work together seamlessly with live discussions, instant edits, and seamless synchronization. Integrated syntax highlighting, version control, and error minimization features. [<a href="https://github.com/Vineeth0502/Realtime-Collaborative-Coding-Platform" target="_blank">Link</a>]</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-heart"></span>
+									<h3>Homeless Prevention Platform</h3>
+									<p>Developed a web platform leveraging machine learning to assess homelessness risk and connect donors with individuals in need, facilitating better housing support and resource distribution. [<a href="https://github.com/JANHAVIKULKARNI12/HOMELESSNESS_PREVENTION" target="_blank">Link</a>]</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-home"></span>
+									<h3>Housing Price Prediction Model</h3>
+									<p>Built a machine learning regression model using Python and Scikit-learn to predict housing prices in California. Leveraged the California housing dataset, performed data preprocessing, and fine-tuned the model to improve accuracy and generalization. [<a href="https://huggingface.co/spaces/veerlap/housing_preds" target="_blank">Link</a>]</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-pills"></span>
+									<h3>Warfarin Dosing Prediction</h3>
+									<p>Built End-to-End ML pipeline for Warfarin Dosing Prediction using Gradio + HuggingFace. Designed and implemented a complete machine learning pipeline to predict optimal warfarin dosage, integrating data preprocessing, feature selection, and model validation. [<a href="https://huggingface.co/spaces/veerlap/Warfarin_Dosage_Prediction" target="_blank">Link</a>]</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-bolt"></span>
+									<h3>Dynamic Voltage Restorer Control</h3>
+									<p>Design and development of control circuit for DVR (Dynamic Voltage Restorer). Simulation for Single Phase and Three Phase DVR for 50% Sag Compensation using MATLAB.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-microchip"></span>
+									<h3>BLDC Motor Control</h3>
+									<p>Position sensorless field-oriented control of BLDC motor for EV applications (<a href="https://www.e3s-conferences.org/articles/e3sconf/abs/2023/28/e3sconf_icmed-icmpc2023_01176/e3sconf_icmed-icmpc2023_01176.html" target="_blank">Published by E3S Web of Conferences</a>). Hardware implementation using MATLAB, CCS (Code Composer Studio) and GUI software.</p>
+								</section>
+							</div>
+						</div>
+					</section>
+
+				<!-- Skills -->
+					<section id="skills" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Skills</h2>
+							<div class="features">
+								<section>
+									<span class="icon solid major fa-laptop-code"></span>
+									<h3>Programming</h3>
+									<p>Python, Java, C, C++, JavaScript, SQL, HTML/CSS</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-tools"></span>
+									<h3>Software & web development</h3>
+									<p>WebSockets, Express.js, React.js, REST APIs, Node.js, Flask, GUI, CCS (Code Composer Studio), MATLAB</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-code-branch"></span>
+									<h3>Data Structures and algorithms</h3>
+									<p>Proficient in solving complex algorithmic problems.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-server"></span>
+									<h3>Other</h3>
+									<p>Docker, CI/CD Pipelines, Agile, Trello, Git, GitHub, Machine learning, Membership Inference Attacks (MIA'S), White-box and black-box mitigation, explainable AI(SHAP), Scikit-learn, Hugging Face+ Gradio</p>
+								</section>
+							</div>
+						</div>
+					</section>
+
+				<!-- Experience -->
+					<section id="experience" class="wrapper style2 spotlights">
+						<div class="inner">
+							<h2>Experience</h2>
+							<div class="features">
+								<section>
+									<span class="icon solid major fa-chart-bar"></span>
+									<h3>Data Visualization Associate - Excelerate Global</h3>
+									<p>Jan 8th, 2024 - Feb 8th, 2024<br>Created interactive dashboards and visualized key performance indicators in Google Data Studio, helping drive data-informed decisions.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-tasks"></span>
+									<h3>Project Management Associate - Excelerate Global</h3>
+									<p>Jan 8th, 2024 - Feb 8th, 2024<br>Led project planning and coordination for a global hackathon, working closely with cross-functional teams.</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-hospital"></span>
+									<h3>Healthcare Management Work Simulation - Excelerate Global</h3>
+									<p>Jan 11th, 2024 - Feb 11th, 2024<br>Conducted needs assessment for adolescent healthcare using real-world data analysis and strategic recommendations.</p>
+								</section>
+							</div>
+						</div>
+					</section>
+
+				<!-- Education -->
+					<section id="education" class="wrapper style3 fade-up">
+						<div class="inner">
+							<h2>Education</h2>
+							<div class="features">
+								<section>
+									<span class="icon solid major fa-graduation-cap"></span>
+									<h3>Saint Louis University</h3>
+									<p>Master's in Computer Science<br>Expected May 2025<br>GPA: 3.77</p>
+									<h4>Coursework:</h4>
+									<p style="line-height: 1.6;">
+										Principles of Software Development, Computing and Society, Computer Science Colloquium, Software Architecture, Computer Networks, Algorithms, Concurrent & Parallel Programming, Machine Learning, Computer Security, Databases, Web Programming, Object-Oriented Programming
+									</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-university"></span>
+									<h3>Gokaraju Rangaraju Institute of Engineering and Technology</h3>
+									<p>Bachelor of Technology in Electrical and Electronics Engineering<br>2019-2023<br>GPA: 3.19 (US Equivalent)</p>
+									<h4>Coursework:</h4>
+									<p style="line-height: 1.6;">
+										Linear Algebra and Differential Calculus, Engineering Chemistry, Basic Electrical Engineering, Engineering Workshop, Engineering Mechanics, Electrical Circuit Analysis, Analog Electronic Circuits, Electrical Machines, Electromagnetic Fields, Value Ethics and Gender Culture, Constitution of India, Signals and Systems, Power Systems, Power Electronics, Microcontrollers, Artificial Intelligence Techniques, Fundamentals of Management and Entrepreneurship, Cloud Computing (NPTEL), Economics and Accounting for Engineers, Probability and Statistics, Control Systems, Principles of Digital Electronics, Environmental Science, Design Thinking, Power System Protection, Introduction to Internet of Things (NPTEL), Electric Drives, Database Management Systems, Power Systems, Electronics Design, Electrical and Hybrid Vehicles, High Voltage Engineering, Electronics Design, Programmable Logic Controllers, Power Quality and FACTS, Electric Smart Grid
+									</p>
+								</section>
+							</div>
+						</div>
+					</section>
+
+				<!-- Certifications -->
+					<section id="certifications" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Certifications</h2>
+							<div class="features">
+								<section>
+									<span class="icon solid major fa-cloud"></span>
+									<h3>Cloud Computing</h3>
+									<p>National Programme on Technology Enhanced Learning (NPTEL)</p>
+								</section>
+								<section>
+									<span class="icon solid major fa-network-wired"></span>
+									<h3>Introduction to Internet of Things</h3>
+									<p>National Programme on Technology Enhanced Learning (NPTEL)</p>
+								</section>
+							</div>
+						</div>
+					</section>
+
+				<!-- Contact -->
+					<section id="contact" class="wrapper style2 spotlights">
+						<div class="inner">
+							<h2>Get in touch</h2>
+							<p>Feel free to reach out. I'll get back to you as soon as possible!</p>
+							<div class="contact-form-container" style="width: 100%; max-width: 600px; margin: 2em auto; background: rgba(255, 255, 255, 0.05); padding: 1.5em; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);">
+								<div style="text-align: center;">
+									<a href="mailto:veerlaprasanthi7@gmail.com" class="button" style="font-size: 1em; padding: 0.8em 1.5em; margin: 1em 0; display: inline-flex; align-items: center; justify-content: center; gap: 0.5em;">
+										<i class="fas fa-envelope"></i><span>Send me an email</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+			<script>
+				const duck = document.querySelector('.duck');
+				const positions = ['top', 'bottom', 'left', 'right'];
+				let currentPosition = '';
+				let lastPositions = [];
+
+				function getRandomPosition() {
+					// Get all possible positions that haven't been used recently
+					const availablePositions = positions.filter(pos => !lastPositions.includes(pos));
+					
+					// If all positions have been used recently, reset the history
+					if (availablePositions.length === 0) {
+						lastPositions = [];
+						return positions[Math.floor(Math.random() * positions.length)];
+					}
+					
+					// Pick a random position from available ones
+					const newPosition = availablePositions[Math.floor(Math.random() * availablePositions.length)];
+					
+					// Update position history
+					lastPositions.push(newPosition);
+					if (lastPositions.length > 2) {
+						lastPositions.shift();
+					}
+					
+					return newPosition;
+				}
+
+				function getRandomOffset() {
+					// Generate a random position between 5% and 95% of the viewport width/height
+					return Math.floor(Math.random() * 90 + 5);
+				}
+
+				function getRandomDelay() {
+					// Random delay between 1 and 3 seconds
+					return Math.floor(Math.random() * 2000) + 1000;
+				}
+
+				function updateDuckPosition() {
+					// Remove old class
+					if (currentPosition) {
+						duck.classList.remove(currentPosition);
+					}
+
+					// Reset styles and opacity
+					duck.style.top = '';
+					duck.style.bottom = '';
+					duck.style.left = '';
+					duck.style.right = '';
+					duck.style.opacity = '0';
+					duck.style.animation = 'none';
+
+					// Force reflow
+					void duck.offsetWidth;
+
+					// Add new position class and random offset
+					currentPosition = getRandomPosition();
+					duck.classList.add(currentPosition);
+
+					// Set random position based on edge
+					const offset = getRandomOffset();
+					if (currentPosition === 'top' || currentPosition === 'bottom') {
+						duck.style.left = `${offset}%`;
+					} else if (currentPosition === 'left' || currentPosition === 'right') {
+						duck.style.top = `${offset}%`;
+					}
+
+					// Re-apply animation
+					duck.style.opacity = '1';
+					duck.style.animation = '';
+
+					// Schedule next update with random delay
+					setTimeout(updateDuckPosition, getRandomDelay());
+				}
+
+				document.addEventListener('DOMContentLoaded', () => {
+					updateDuckPosition(); // Start immediately
+				});
+
+				// Back to Top Button Functionality
+				function scrollToTop() {
+					window.scrollTo({
+						top: 0,
+						behavior: 'smooth'
+					});
+				}
+
+				// Show/hide back to top button based on scroll position
+				document.addEventListener('DOMContentLoaded', () => {
+					const backToTop = document.querySelector('.back-to-top');
+					const introSection = document.querySelector('#intro');
+					
+					window.addEventListener('scroll', () => {
+						const scrollPosition = window.scrollY;
+						const introHeight = introSection.offsetHeight;
+						
+						// Show button when scrolled down 20% of the intro section height
+						if (scrollPosition > introHeight * 0.2) {
+							backToTop.style.opacity = '1';
+							backToTop.style.visibility = 'visible';
+						} else {
+							backToTop.style.opacity = '0';
+							backToTop.style.visibility = 'hidden';
+						}
+					});
+				});
+			</script>
+	</body>
+</html>
+
