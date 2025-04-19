@@ -33,34 +33,42 @@
 			.wrapper {
 				background-color: var(--background-color) !important;
 				color: var(--text-color);
-				padding: 3em 0;
+				padding: 1em 0 !important;
 			}
 
 			/* Layout adjustments */
+			.wrapper {
+				padding: 1em 0 !important;
+			}
+
 			.features {
 				display: flex;
 				flex-direction: column !important;
+				gap: 0.5em;
 			}
 
 			.features section {
 				width: 100% !important;
 				margin-left: 0 !important;
 				margin-right: 0 !important;
+				margin-bottom: 0.5em;
 			}
 
 			.features section:first-child {
 				border-bottom: 1px solid var(--border-color);
-				padding-bottom: 2em;
-				margin-bottom: 2em;
+				padding-bottom: 0.5em;
+				margin-bottom: 0.5em;
 			}
 
 			.spotlights {
 				display: flex;
 				flex-direction: column !important;
+				gap: 0.5em;
 			}
 
 			.spotlights section {
 				width: 100% !important;
+				margin-bottom: 0.5em;
 			}
 
 			/* Text colors */
@@ -219,6 +227,63 @@
 
 			.back-to-top:hover i {
 				color: var(--accent-color);
+			}
+
+			/* Reduce spacing in experience section */
+			#experience section {
+				margin-bottom: 1em;
+			}
+
+			#experience section div {
+				margin-top: 0.5em;
+			}
+
+			/* Reduce spacing in education section */
+			#education .features section {
+				margin-bottom: 1em;
+			}
+
+			/* Reduce spacing in certifications section */
+			#certifications .features section {
+				margin-bottom: 1em;
+			}
+
+			/* Navigation highlighting */
+			#sidebar nav ul li a {
+				position: relative;
+				transition: all 0.3s ease;
+			}
+
+			#sidebar nav ul li a.active {
+				color: var(--accent-color) !important;
+			}
+
+			#sidebar nav ul li a.active::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -2px;
+				width: 100%;
+				height: 2px;
+				background-color: var(--accent-color);
+				transform: scaleX(1);
+				transition: transform 0.3s ease;
+			}
+
+			#sidebar nav ul li a::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -2px;
+				width: 100%;
+				height: 2px;
+				background-color: var(--accent-color);
+				transform: scaleX(0);
+				transition: transform 0.3s ease;
+			}
+
+			#sidebar nav ul li a:hover::after {
+				transform: scaleX(1);
 			}
 		</style>
 	</head>
@@ -596,6 +661,53 @@
 							backToTop.style.opacity = '0';
 							backToTop.style.visibility = 'hidden';
 						}
+					});
+				});
+
+				// Add this new function to handle section highlighting
+				function updateActiveSection() {
+					const sections = document.querySelectorAll('section[id]');
+					const navLinks = document.querySelectorAll('#sidebar nav ul li a');
+					
+					let currentSection = '';
+					
+					sections.forEach(section => {
+						const sectionTop = section.offsetTop;
+						const sectionHeight = section.clientHeight;
+						if (window.scrollY >= (sectionTop - 200)) {
+							currentSection = section.getAttribute('id');
+						}
+					});
+					
+					navLinks.forEach(link => {
+						link.classList.remove('active');
+						if (link.getAttribute('href') === `#${currentSection}`) {
+							link.classList.add('active');
+						}
+					});
+				}
+
+				// Add scroll event listener
+				window.addEventListener('scroll', updateActiveSection);
+				document.addEventListener('DOMContentLoaded', updateActiveSection);
+
+				// Update active section when clicking navigation links
+				document.querySelectorAll('#sidebar nav ul li a').forEach(link => {
+					link.addEventListener('click', (e) => {
+						e.preventDefault();
+						const targetId = link.getAttribute('href');
+						const targetSection = document.querySelector(targetId);
+						
+						// Remove active class from all links
+						document.querySelectorAll('#sidebar nav ul li a').forEach(l => {
+							l.classList.remove('active');
+						});
+						
+						// Add active class to clicked link
+						link.classList.add('active');
+						
+						// Scroll to section
+						targetSection.scrollIntoView({ behavior: 'smooth' });
 					});
 				});
 			</script>
